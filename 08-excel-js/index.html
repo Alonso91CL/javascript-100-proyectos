@@ -87,11 +87,31 @@
     const $body = $('tbody')
 
     const ROWS = 10
-    const COLUMNS = 5
+    const COLUMNS = 27
     const FIRST_CHAR_CODE = 65
 
     const times = length => Array.from({ length }, (_, i) => i)
-    const getColumn = i => String.fromCharCode(FIRST_CHAR_CODE + i)
+    const getColumn = i => {
+      const totLetter = 26
+      let columName = ''
+      //Calculo constante e iteracion
+      i++
+      let c = (i%totLetter == 0)? 0:1;
+      let loop = Math.trunc(i/totLetter)
+      let iter = loop + c
+      i--
+      //calcula el reinicio de las letras para nombrar las columnas
+      if(i>=totLetter){
+        loop = Math.trunc(i/totLetter)
+        i= i - (totLetter*loop)
+      }
+      //genera nombre de columna iterado
+      for (let index = 0; index < iter; index++) {
+        columName += String.fromCharCode(FIRST_CHAR_CODE + i)
+      }
+      
+      return columName
+    }
 
     let selectedColumn = null
 
